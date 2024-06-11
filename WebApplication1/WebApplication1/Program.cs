@@ -1,13 +1,6 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.Extensions.Configuration;
-using MVCStartApp.Middlewares;
-using MVCStartApp.Models.Db;
-using MVCStartApp.Repository;
-
-namespace MVCStartApp 
+namespace WebApplication1
 {
-    public class Program 
+    public class Program
     {
         public static void Main(string[] args)
         {
@@ -15,11 +8,6 @@ namespace MVCStartApp
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-
-            string connection = builder.Configuration.GetConnectionString("DefaultConnection");
-            builder.Services.AddDbContext<BlogContext>(options => options.UseSqlServer(connection), ServiceLifetime.Singleton);
-            builder.Services.AddControllersWithViews();
-            builder.Services.AddSingleton<IBlogRepository, BlogRepository>();
 
             var app = builder.Build();
 
@@ -30,7 +18,7 @@ namespace MVCStartApp
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            app.UseMiddleware<LoggingMiddleware>();
+
             app.UseHttpsRedirection();
             app.UseStaticFiles();
 
@@ -41,6 +29,7 @@ namespace MVCStartApp
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
             app.Run();
         }
     }
