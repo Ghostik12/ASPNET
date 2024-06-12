@@ -15,7 +15,7 @@ namespace MVCStartApp.Controllers
         
         public async Task<IActionResult> Logs()
         {
-            var usersLogs = _userRequest.GetRequests();
+            var usersLogs = await _userRequest.GetRequests();
             return View(usersLogs);
         }
     }

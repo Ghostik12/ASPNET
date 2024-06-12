@@ -29,7 +29,7 @@ namespace MVCStartApp.Middlewares
                 Date = DateTime.Now,
                 Url = $"{context.Request.Host.Value + context.Request.Path}"
             };
-            userRequest.AddRequest(request);
+            await userRequest.AddRequest(request);
 
             // Передача запроса далее по конвейеру
             await _next.Invoke(context);
