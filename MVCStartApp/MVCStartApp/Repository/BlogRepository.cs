@@ -14,6 +14,9 @@ namespace MVCStartApp.Repository
 
         public async Task AddUser(User user)
         {
+            user.Id = Guid.NewGuid();
+            user.JoinDate = DateTime.Now;
+
             var entry = _blogContext.Entry(user);
             if (entry.State == EntityState.Detached) 
                 await _blogContext.Users.AddAsync(user);

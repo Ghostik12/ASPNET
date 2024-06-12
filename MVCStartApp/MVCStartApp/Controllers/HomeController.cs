@@ -44,11 +44,5 @@ namespace MVCStartApp.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
-        public async Task<IActionResult> Authors()
-        {
-            var authors = await _blogRepository.GetUsers();
-            return View(authors);
-        }
     }
 }

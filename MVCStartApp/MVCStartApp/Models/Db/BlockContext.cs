@@ -9,6 +9,7 @@ namespace MVCStartApp.Models.Db
 
         /// Ссылка на таблицу UserPosts
         public DbSet<UserPost> UserPosts { get; set; }
+        public DbSet<UserRequest> UserRequest { get; set; }
 
         // Логика взаимодействия с таблицами в БД
         public BlogContext(DbContextOptions<BlogContext> options) : base(options)
@@ -21,6 +22,7 @@ namespace MVCStartApp.Models.Db
             //жесткая привязка сущности к таблице в БД
             modelBuilder.Entity<User>().ToTable("Users");
             modelBuilder.Entity<UserPost>().ToTable("UserPosts");
+            modelBuilder.Entity<UserRequest>().ToTable("UserRequest");
         }
     }
 }

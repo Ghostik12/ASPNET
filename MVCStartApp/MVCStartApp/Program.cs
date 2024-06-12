@@ -1,9 +1,11 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.Extensions.Configuration;
+using MVCStartApp.Controllers;
 using MVCStartApp.Middlewares;
 using MVCStartApp.Models.Db;
 using MVCStartApp.Repository;
+using UserRequest1 = MVCStartApp.Repository.UserRequest1;
 
 namespace MVCStartApp 
 {
@@ -20,6 +22,7 @@ namespace MVCStartApp
             builder.Services.AddDbContext<BlogContext>(options => options.UseSqlServer(connection), ServiceLifetime.Singleton);
             builder.Services.AddControllersWithViews();
             builder.Services.AddSingleton<IBlogRepository, BlogRepository>();
+            builder.Services.AddSingleton<IUserRequest, UserRequest1>();
 
             var app = builder.Build();
 
